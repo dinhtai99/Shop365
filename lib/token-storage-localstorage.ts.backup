@@ -1,0 +1,44 @@
+/**
+ * Token Storage Utilities - localStorage version (BACKUP)
+ * File này được backup để tham khảo
+ * 
+ * Đã được thay thế bằng memory-based storage để tăng bảo mật
+ * Xem: lib/token-storage.ts (memory-based)
+ */
+
+const ACCESS_TOKEN_KEY = 'access_token'
+
+/**
+ * Lưu access token vào localStorage
+ */
+export function saveAccessToken(token: string): void {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(ACCESS_TOKEN_KEY, token)
+  }
+}
+
+/**
+ * Lấy access token từ localStorage
+ */
+export function getAccessToken(): string | null {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem(ACCESS_TOKEN_KEY)
+  }
+  return null
+}
+
+/**
+ * Xóa access token
+ */
+export function removeAccessToken(): void {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem(ACCESS_TOKEN_KEY)
+  }
+}
+
+/**
+ * Kiểm tra có access token không
+ */
+export function hasAccessToken(): boolean {
+  return getAccessToken() !== null
+}
